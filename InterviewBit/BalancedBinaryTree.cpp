@@ -7,25 +7,21 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
- 
-int height(TreeNode* A) {
-    if(!A) {
-        return 0;
-    }
-    int l = height(A -> left);
-    int r = height(A -> right);
-    
-    if(l < 0 || r < 0)
-        return INT_MIN;
-    
-    if(abs(l-r) > 1)
-        return INT_MIN;
-    return 1 + max(l, r);
-}
 
+pair<bool, int> balanceHeight(TreeNode* A) {
+    if(!A) {
+        return { true, 0 };
+    }
+    pair<bool, int> l = balanceHeight(A -> left);
+    pair<bool, int> r = balanceHeight(A -> right);
+    bool ans = true;
+    if((!l.first || !r.first) || (abs(l.second - r.second) > 1))
+        ans = false;
+    int h = max(l.second, r.second) + 1;
+    return { ans, h };
+} 
+ 
 int Solution::isBalanced(TreeNode* A) {
-    if(height(A) < 0)
-        return 0;
-    return 1;    
+    return balanceHeight(A).first;
 }
 
