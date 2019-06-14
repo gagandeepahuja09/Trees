@@ -10,11 +10,9 @@
 TreeNode* Solution::invertTree(TreeNode* A) {
     if(!A)
         return A;
-    A -> left  = invertTree(A -> left);
-    A -> right = invertTree(A -> right);
-    TreeNode* temp = A -> left;
-    A -> left = A -> right;
-    A -> right = temp;
+    TreeNode *l = invertTree(A -> left), *r = invertTree(A -> right);
+    A -> left = r;
+    A -> right = l;
     return A;
 }
 
