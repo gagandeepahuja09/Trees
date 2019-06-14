@@ -7,13 +7,7 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-// Apply the approach of method of two pointers to BST
-// For that the two stacks will store iterative inorder traversal
-// And reverse iterative inorder traversal
-
 int Solution::t2Sum(TreeNode* A, int B) {
-    if(!A)
-        return 0;
     stack<TreeNode*> s1, s2;
     TreeNode *temp1 = A, *temp2 = A;
     while(temp1) {
@@ -29,7 +23,7 @@ int Solution::t2Sum(TreeNode* A, int B) {
     while(temp1 && temp2 && temp1 -> val < temp2 -> val) {
         if(temp1 -> val + temp2 -> val == B)
             return 1;
-        else if(temp1 -> val + temp2 -> val < B) {
+        if(temp1 -> val + temp2 -> val < B) {
             s1.pop();
             temp1 = temp1 -> right;
             while(temp1) {
