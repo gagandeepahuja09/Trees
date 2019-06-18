@@ -17,15 +17,15 @@ TreeLinkNode* getNext(TreeLinkNode* root) {
         temp = temp -> next;    
     }
     return NULL;
-} 
+}
  
 void Solution::connect(TreeLinkNode* A) {
     if(!A)
         return;
     A -> next = NULL;
     while(A) {
-        // Connect all children nodes of A and all other children
-        // Node at same level as A
+        // First connect the lower level by moving through next pointers
+        // Then move at that lower level
         TreeLinkNode* B = A;
         while(B) {
             if(B -> left) {
@@ -34,9 +34,10 @@ void Solution::connect(TreeLinkNode* A) {
                 else
                     B -> left -> next = getNext(B);
             }
-            if(B -> right)
+            if(B -> right) {
                 B -> right -> next = getNext(B);
-            B = B -> next;    
+            }
+            B = B -> next;
         }
         if(A -> left)
             A = A -> left;
@@ -46,5 +47,4 @@ void Solution::connect(TreeLinkNode* A) {
             A = getNext(A);
     }
 }
-
 
