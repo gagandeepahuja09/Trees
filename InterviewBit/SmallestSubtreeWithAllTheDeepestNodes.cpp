@@ -69,8 +69,7 @@ TreeNode* dfs(TreeNode* A, int h, int height) {
         return A;
     if(l)
         return l;     
-    if(r)
-        return r;
+    return r;
 }
 
 int findHeight(TreeNode* A) {
