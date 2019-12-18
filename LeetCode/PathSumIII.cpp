@@ -6,8 +6,7 @@ public:
         curr += root -> val;
         int ans = mp[curr - target];
         mp[curr]++;
-        ans += sum(root -> left, curr, target, mp) 
-            + sum(root -> right, curr, target, mp);
+        ans += sum(root -> left, curr, target, mp) + sum(root -> right, curr, target, mp);
         mp[curr]--;
         return ans;
     }
